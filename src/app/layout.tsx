@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import {Geist, Geist_Mono} from 'next/font/google';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
+import Script from 'next/script';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -17,10 +18,10 @@ const APP_NAME = "RoastAI";
 const APP_DEFAULT_TITLE = "RoastAI - Generate Hilarious AI Roasts | Personalized Comedy";
 const APP_TITLE_TEMPLATE = "%s | RoastAI";
 const APP_DESCRIPTION = "Unleash the power of AI to create personalized and funny roasts! Describe your target, set the intensity, and let RoastAI do the rest. Perfect for parties, friends, or just a good laugh. Available in English and Spanish.";
-const APP_URL = "https://roastai.yourdomain.com"; // Replace with your actual domain
+const APP_URL = "https://roastai.yourdomain.com";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(APP_URL), // Added metadataBase
+  metadataBase: new URL(APP_URL),
   applicationName: APP_NAME,
   title: {
     default: APP_DEFAULT_TITLE,
@@ -32,7 +33,6 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "default",
     title: APP_DEFAULT_TITLE,
-    // startupImage: [], // Add startup images if needed
   },
   formatDetection: {
     telephone: false,
@@ -53,7 +53,6 @@ export const metadata: Metadata = {
   creator: 'The RoastAI Team',
   publisher: 'The RoastAI Team',
   category: 'entertainment',
-  
   openGraph: {
     type: "website",
     siteName: APP_NAME,
@@ -107,16 +106,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      {/*
-        The <head> tag is automatically managed by Next.js through the 'metadata' object.
-        It should not be manually added here.
-        Ensure no actual whitespace characters (like ' ') are rendered as direct children of <html>,
-        as this can cause hydration errors. JSX comments like this one are fine.
-      */}
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Script src="https://js.puter.com/v2/" strategy="beforeInteractive" />
         {children}
         <Toaster />
       </body>
     </html>
   );
-}
+        }
